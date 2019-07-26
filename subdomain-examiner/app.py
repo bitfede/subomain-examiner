@@ -6,6 +6,7 @@
 # PURPOSE: Python tool to perform recon on a list of subdomains
 ###
 
+from examiner import examine
 import argparse
 import os
 
@@ -21,9 +22,9 @@ inputfile = None
 inputfile = args.i
 
 if inputfile is None:
-    print("[!] No inputfile or outputfile flag specified")
-    print("[i] Usage: subdomain-examiner -i path/to/inputfile")
+    print("[!] No inputfile flag specified")
     print("[!] Exiting")
+    print("[i] Usage: subdomain-examiner -i path/to/inputfile")
     exit(1)
 else:
     print(f"[*] Reading subdomains from: {inputfile}")
@@ -31,12 +32,24 @@ else:
 # check if they are valid files
 is_inputfile_valid = os.path.isfile(inputfile)
 
-print(f"1 {is_inputfile_valid}")
+if is_inputfile_valid is False:
+    print("[!] The inputfile is not a valid file path")
+    print("[!] Exiting")
+    exit(2)
 
 # parse the file and get an array of subdomains
+inputfile = open(inputfile, 'r')
+
+subdomains = inputfile.read().split('\n')
+subdomains.pop()
+inputfile.close()
+
+scanner_results_arr = []
 
 #for each subdomain call the scanner method/s
-
+for subdomain in subdomains:
+    scan_res = examine(subdomain)
+    print("[>] Scan Results", scan_res)
 #get back structured results and call reporting method/s
 
 #exit gracefully
