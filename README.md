@@ -8,7 +8,11 @@ Requires superuser permission to run because it uses the nmap SYN scan. Make sur
 
 ## How do I install it?
 
-TODO
+1. `git clone` this repo
+2. make sure python3-nmap is installed. Install it with `sudo apt install python3-nmap`
+3. create a symlink with `ln -s /path/to/subdomain-examiner/subdomain-examiner/app.py ~/bin/subdomain-examiner` (make sure `~/bin` or whatever you want to use exists)
+4. make sure `~/bin` or whatever you are using is in `$PATH` if not add it yourself
+5. test successful installation with `subdomain-examiner -h`
 
 ## How do I use it?
 
