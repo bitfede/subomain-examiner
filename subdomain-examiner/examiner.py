@@ -17,8 +17,7 @@ def examine(subdomain_data):
     nm.scan(subdomain_data, arguments='-sS -Pn')
 
     results = {}
-
-    if ip_addr not in nm:
+    if ip_addr not in nm.all_hosts():
         print("[!] No ip_addr key found in nm scan object")
         return results
 
