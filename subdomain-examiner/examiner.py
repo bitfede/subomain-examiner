@@ -17,11 +17,17 @@ def examine(subdomain_data):
     nm.scan(subdomain_data, arguments='-sS -Pn')
 
     results = {}
+
+    if ip_addr not in nm:
+        print("[!] No ip_addr key found in nm scan object")
+        return results
+
     results["Hostname"] = nm[ip_addr].hostname()
     results["State"] = nm[ip_addr].state()
     results["Ports"] = []
 
     if 'tcp' not in nm[ip_addr]:
+        print("[!] No TCP ports open")
         return results
 
     for key in nm[ip_addr]['tcp'].keys():
