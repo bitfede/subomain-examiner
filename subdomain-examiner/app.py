@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 ###
 # AUTHOR: Federico De Faveri
 # DATE: July 2019
@@ -58,7 +60,8 @@ for subdomain in subdomains:
 
         reportfile = open(repfilename, 'a')
         reportfile.write(f"{examined_hostname}\n")
-
+#get back structured results and call reporting method/s
+# TODO create files for each open port type and name them {port_number}-{port_name}
 
 #exit gracefully
 exit(0)
