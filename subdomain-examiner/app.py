@@ -55,6 +55,11 @@ os.mkdir(dirname)
 # for each subdomain call the scanner method/s
 for subdomain in subdomains:
     scan_res = examine(subdomain)
+    if scan_res == {}:
+        continue
+    if len(scan_res['Ports']) == 0:
+        continue
+
     examined_hostname = scan_res["Hostname"]
     print("[>] Scan Results for", examined_hostname)
     for port in scan_res["Ports"]:

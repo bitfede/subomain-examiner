@@ -7,7 +7,10 @@ nm = nmap.PortScanner()
 
 def examine(subdomain_data):
 
-    ip_addr = socket.gethostbyname(subdomain_data)
+    try:
+        ip_addr = socket.gethostbyname(subdomain_data)
+    except socket.error:
+        return {}
 
     print(f"[*] Examining {subdomain_data} | IP: {ip_addr}")
 
@@ -17,6 +20,14 @@ def examine(subdomain_data):
     results["Hostname"] = nm[ip_addr].hostname()
     results["State"] = nm[ip_addr].state()
     results["Ports"] = []
+
+    print(nm.all_hosts())
+    print('--------')
+    print(nm[ip_addr])
+    print('--------')
+
+    if 'tcp' not in nm[ip_addr]:
+        return results
 
     for key in nm[ip_addr]['tcp'].keys():
         # print(nm[ip_addr]['tcp'][key])
