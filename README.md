@@ -29,7 +29,7 @@ subdomain3.example.com
 subdomain4.example.com
 ```
 
-The examiner will start scanning
+The examiner will start port scanning them one by one and create different text files depending which subdomains have which port open. All these report files are saved in a directory named with the present timestamp.
 
 ## DISCLAIMER
 
