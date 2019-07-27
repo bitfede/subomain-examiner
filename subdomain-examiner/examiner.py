@@ -21,11 +21,6 @@ def examine(subdomain_data):
     results["State"] = nm[ip_addr].state()
     results["Ports"] = []
 
-    print(nm.all_hosts())
-    print('--------')
-    print(nm[ip_addr])
-    print('--------')
-
     if 'tcp' not in nm[ip_addr]:
         return results
 
