@@ -11,9 +11,7 @@ def examine(subdomain_data):
 
     print(f"[*] Examining {subdomain_data} | IP: {ip_addr}")
 
-    nm.scan(subdomain_data, arguments='-sS -Pn -p-')
-
-    print(nm.all_hosts())
+    nm.scan(subdomain_data, arguments='-sS -Pn')
 
     results = {}
     results["Hostname"] = nm[ip_addr].hostname()
@@ -24,7 +22,7 @@ def examine(subdomain_data):
         # print(nm[ip_addr]['tcp'][key])
         port_data = {
             "portNumber": key,
-            "PortStatus": nm[ip_addr]['tcp'][key]
+            "portStatus": nm[ip_addr]['tcp'][key]
         }
 
         results["Ports"].append(port_data)
